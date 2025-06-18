@@ -1,0 +1,16 @@
+query areaSuggestionSearch {
+  # The actual field names would depend on Booli's schema
+  # This is likely searching for area suggestions based on "ekto"
+  areaSuggestionSearch(search: "ektorp") {
+    suggestions{
+        id
+        displayName
+        parent
+        parentType
+        parentDisplayName
+        parentTypeDisplayName
+        parentId
+    }
+    
+  }
+}

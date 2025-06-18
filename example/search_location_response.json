@@ -1,0 +1,89 @@
+{
+  "data": {
+    "areaSuggestionSearch": {
+      "suggestions": [
+        {
+          "id": "509",
+          "displayName": "Ektorp",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "99592",
+          "displayName": "Ektorpsvägen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "107598",
+          "displayName": "Ormingeringen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "99417",
+          "displayName": "Edinsvägen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "113129",
+          "displayName": "Ugglevägen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "88490",
+          "displayName": "Ljuskärrsvägen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "97379",
+          "displayName": "Beckasinvägen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "109434",
+          "displayName": "Sickla strand",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        },
+        {
+          "id": "114170",
+          "displayName": "Värmdövägen",
+          "parent": "Nacka",
+          "parentType": "Kommun",
+          "parentDisplayName": "Nacka kommun",
+          "parentTypeDisplayName": "Kommun",
+          "parentId": "76"
+        }
+      ]
+    }
+  }
+}
