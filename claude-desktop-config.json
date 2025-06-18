@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "booli": {
+      "command": "node",
+      "args": ["/Users/mattias/Developer/booli-mcp-cc/dist/index.js"],
+      "env": {
+        "BOOLI_GRAPHQL_URL": "https://api.booli.se/graphql",
+        "BOOLI_API_KEY": "your_booli_api_key_here"
+      }
+    }
+  }
+}

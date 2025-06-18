@@ -1,0 +1,173 @@
+{
+    "data": {
+        "forSale": {
+            "facets": {
+                "forSaleType": {
+                    "upcomingSale": 21798,
+                    "forSale": 24902,
+                    "__typename": "ForSaleType"
+                },
+                "__typename": "ForSaleFacets"
+            },
+            "pages": 1348,
+            "totalCount": 47150,
+            "adTargetingProperties": [
+                {
+                    "key": "objectType",
+                    "value": "4",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "priceGroup",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "constructionYearEra",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "plotAreaGroup",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "room",
+                    "value": "1,2,3,4,5,6,7,8",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "municipality",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "county",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "suburb",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "district",
+                    "value": "",
+                    "__typename": "KeyValueOutput"
+                },
+                {
+                    "key": "sArea",
+                    "value": "77104",
+                    "__typename": "KeyValueOutput"
+                }
+            ],
+            "result": [
+                {
+                    "__typename": "Listing",
+                    "id": "5766681",
+                    "booliId": "5766681",
+                    "amenities": [
+                        {
+                            "key": "balcony",
+                            "label": "Balkong",
+                            "__typename": "Amenity"
+                        }
+                    ],
+                    "blockedImages": false,
+                    "descriptiveAreaName": "Kramfors",
+                    "displayAttributes": {
+                        "dataPoints": [
+                            {
+                                "value": {
+                                    "plainText": "80 m²",
+                                    "__typename": "DisplayText"
+                                },
+                                "screenReaderLabel": "80 kvadratmeter",
+                                "__typename": "DataPoint"
+                            },
+                            {
+                                "value": {
+                                    "plainText": "3 rum",
+                                    "__typename": "DisplayText"
+                                },
+                                "screenReaderLabel": "3 rum",
+                                "__typename": "DataPoint"
+                            },
+                            {
+                                "value": {
+                                    "plainText": "vån 1",
+                                    "__typename": "DisplayText"
+                                },
+                                "screenReaderLabel": "vån 1",
+                                "__typename": "DataPoint"
+                            },
+                            {
+                                "value": {
+                                    "plainText": "5 383 kr/mån",
+                                    "__typename": "DisplayText"
+                                },
+                                "screenReaderLabel": "5 383 kr/mån",
+                                "__typename": "DataPoint"
+                            }
+                        ],
+                        "__typename": "DisplayAttributes"
+                    },
+                    "location": {
+                        "region": {
+                            "municipalityName": "Kramfors",
+                            "__typename": "Region"
+                        },
+                        "__typename": "Location"
+                    },
+                    "daysActive": 0,
+                    "published": "2025-06-18 06:26:55",
+                    "listPrice": {
+                        "formatted": "595 000 kr",
+                        "value": "595 000",
+                        "unit": "kr",
+                        "raw": 595000,
+                        "__typename": "FormattedValue"
+                    },
+                    "listPricePercentageDiff": null,
+                    "listSqmPrice": {
+                        "formatted": "7 400 kr/m²",
+                        "__typename": "FormattedValue"
+                    },
+                    "latitude": 62.92798694,
+                    "longitude": 17.77628227,
+                    "primaryImage": {
+                        "id": "47846736",
+                        "alt": "Exteriörbild",
+                        "__typename": "Image"
+                    },
+                    "objectType": "Lägenhet",
+                    "estimate": {
+                        "price": {
+                            "value": "530 000",
+                            "unit": "kr",
+                            "raw": 530000,
+                            "formatted": "530 000 kr",
+                            "__typename": "FormattedValue"
+                        },
+                        "__typename": "Estimate"
+                    },
+                    "streetAddress": "Björstagatan 15B",
+                    "url": "/bostad/408772",
+                    "isNewConstruction": false,
+                    "biddingOpen": 0,
+                    "upcomingSale": false,
+                    "tenureForm": "Bostadsrätt",
+                    "agency": {
+                        "thumbnail": "https://cdn.hittamaklare.se/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTg5NjcsInB1ciI6ImJsb2JfaWQifX0=--eaf8ec49bcd8dba6d65b33cd761c3803c9936943/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJwbmciLCJyZXNpemVfdG9fZml0IjpbMjcwLDE0MF0sInNhdmVyIjp7InF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--8f889678d3badebf1f25fcbfb1519b08e2e10652/952f89fa-f312-4edc-91d1-03bf45614c26_logo.png",
+                        "url": "https://www.hittamaklare.se/maklarbyra/hoga-kusten-makleri",
+                        "name": "Höga Kusten Mäkleri",
+                        "__typename": "Agency"
+                    },
+                    "nextShowing": null
+                }
+            ]}
+        }
+    }
+

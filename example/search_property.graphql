@@ -1,0 +1,68 @@
+query searchCount {
+  searchForSale(
+    input: {
+      filters: [
+        { key: "amenities", value: "hasBalconyOrPatio,hasFireplace,buildingHasElevator" }
+        { key: "daysActive", value: "7" }
+        { key: "extendAreas", value: "3" }
+        { key: "floor", value: "bottomFloor" }
+        { key: "maxConstructionYear", value: "2024" }
+        { key: "maxDistanceToWater", value: "8000" }
+        { key: "maxListPrice", value: "4500000" }
+        { key: "maxListSqmPrice", value: "120000" }
+        { key: "maxLivingArea", value: "75" }
+        { key: "maxPlotArea", value: "10000" }
+        { key: "maxRent", value: "8000" }
+        { key: "maxRooms", value: "3.5" }
+        { key: "minConstructionYear", value: "2023" }
+        { key: "minListPrice", value: "1000000" }
+        { key: "minListSqmPrice", value: "45000" }
+        { key: "minLivingArea", value: "50" }
+        { key: "minPlotArea", value: "2000" }
+        { key: "minRooms", value: "2" }
+        { key: "objectType", value: "Lägenhet" }
+        { key: "showOnly", value: "priceDecrease,tenureOwnership" }
+        { key: "showingStartRelative", value: "thisWeekend" }
+      ]
+      areaId: "509"
+      page: 1
+      ascending: false
+      excludeAncestors: true
+      facets: [upcomingSale]
+    }
+  ) {
+    totalCount
+    result {
+      ... on Property {
+        id
+        livingArea {
+          value
+          formatted
+        }
+        rooms {
+          value
+          formatted
+        }
+        plotArea {
+            value
+            formatted
+        }
+      }
+      ... on Listing {
+        id
+        listPrice {
+          value
+          formatted
+        }
+        livingArea {
+          value
+          formatted
+        }
+        rooms {
+          value
+          formatted
+        }
+      }
+    }
+  }
+}

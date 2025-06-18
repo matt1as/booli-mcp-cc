@@ -1,0 +1,219 @@
+# Booli MCP Server - Product Requirements Document
+
+## Overview
+The Booli MCP (Model Context Protocol) Server is a specialized integration that connects AI assistants with the Swedish real estate platform Booli.se. This server enables users to search, filter, and analyze property listings (apartments and houses) through natural language queries, providing comprehensive access to Booli's property database via MCP-compatible tools.
+
+The primary problem this solves is the difficulty of programmatically accessing and analyzing Swedish real estate data in a conversational manner. Current solutions require manual browsing of Booli's website or understanding complex API documentation. Our MCP server will bridge this gap, allowing AI assistants to understand natural language property queries and translate them into precise GraphQL queries against Booli's API.
+
+Target users include:
+- Real estate professionals using AI-powered assistants
+- Property investors conducting market research
+- Homebuyers seeking efficient property discovery
+- Data analysts working with Swedish real estate trends
+
+## Core Features
+
+### 1. Property Search and Filtering
+**What it does**: Enables comprehensive property searches with support for all Booli filtering parameters including location, price range, property type, size, rooms, and specific amenities.
+
+**Why it's important**: Users need to find properties matching specific criteria without manually navigating complex search interfaces.
+
+**How it works**: The MCP server exposes search tools that accept natural language criteria and convert them to GraphQL queries against Booli's API, returning structured property data in a standardized format.
+
+### 2. Natural Language Query Processing
+**What it does**: Interprets conversational queries about properties and translates them into appropriate API calls and data analysis.
+
+**Why it's important**: Non-technical users should be able to ask questions like "What's the average price for 3-bedroom apartments in Södermalm?" without understanding API syntax.
+
+**How it works**: Intelligent parsing of user queries to extract search criteria, property analysis requirements, and response formatting preferences, then translating these into GraphQL query parameters and filters.
+
+### 3. Property Data Analysis
+**What it does**: Provides statistical analysis, trend identification, and comparative insights across property listings.
+
+**Why it's important**: Raw property listings are less valuable without context and analysis to support decision-making.
+
+**How it works**: Aggregation functions, price trend analysis, neighborhood comparisons, and market insights generation from GraphQL query results across multiple search parameters and filters.
+
+### 4. Comprehensive Property Details
+**What it does**: Retrieves full property information including descriptions, images, pricing history, and neighborhood data.
+
+**Why it's important**: Users need complete information about properties of interest for informed decision-making.
+
+**How it works**: Detailed property lookup tools that query Booli's GraphQL API for comprehensive property information including all available fields and related data.
+
+### 5. Geospatial and Location Intelligence
+**What it does**: Provides location-based filtering, distance calculations, and neighborhood-specific insights.
+
+**Why it's important**: Location is a critical factor in property decisions, requiring geographical context and proximity analysis.
+
+**How it works**: Integration with location services and geographical filtering capabilities within GraphQL queries using location-based parameters and spatial search features.
+
+## User Experience
+
+### User Personas
+1. **Property Investor (Primary)**: Tech-savvy professional seeking data-driven property investment opportunities
+2. **Homebuyer (Primary)**: Individual or family looking for residential property with specific requirements
+3. **Real Estate Agent (Secondary)**: Professional needing quick access to market data and property comparisons
+4. **Market Researcher (Secondary)**: Analyst studying Swedish real estate trends and patterns
+
+### Key User Flows
+1. **Simple Property Search**: "Show me 2-bedroom apartments under 4M SEK in Stockholm"
+2. **Comparative Analysis**: "Compare average prices for apartments in Östermalm vs Södermalm"
+3. **Market Research**: "What's the price trend for houses in Gothenburg over the last year?"
+4. **Detailed Property Investigation**: "Tell me everything about this specific property listing"
+
+### UI/UX Considerations
+- The MCP server operates through AI assistant interfaces, so the primary UX is conversational
+- Responses should be structured but human-readable
+- Support for both brief summaries and detailed data dumps
+- Error messages should guide users toward valid query formats
+- Consistent response formatting for property data
+
+## Technical Architecture
+
+### System Components
+1. **MCP Server Core**: TypeScript-based server implementing MCP protocol specifications
+2. **GraphQL Client**: Robust HTTP client for communicating with Booli's GraphQL API, handling authentication and rate limiting
+3. **Query Parser**: Natural language processing component for interpreting user requests
+4. **Query Builder**: Component for translating search criteria into GraphQL queries and variables
+5. **Caching System**: Redis-based caching for performance optimization and reducing API calls
+6. **Error Handling**: Comprehensive error management including handling of API errors and network failures
+
+### Data Models
+- **Property**: Core property entity with all Booli fields
+- **SearchCriteria**: Structured representation of user search parameters
+- **AnalysisResult**: Statistical and analytical output format
+- **Location**: Geographical data and neighborhood information
+- **PriceHistory**: Historical pricing data for trend analysis
+
+### APIs and Integrations
+- **Booli GraphQL API**: Primary data source for property listings and detailed information
+- **Geocoding Services**: For location validation and coordinate conversion
+- **MCP Protocol**: Standard implementation for AI assistant compatibility
+- **Configuration Management**: Environment-based settings for API endpoints, authentication, and rate limiting
+
+### Infrastructure Requirements
+- **Runtime**: Node.js 18+ with TypeScript support
+- **Dependencies**: GraphQL client libraries (graphql-request, Apollo Client), HTTP client (axios, fetch)
+- **Authentication**: API key management and secure credential storage
+- **Monitoring**: Logging and performance tracking capabilities with API response metrics
+- **Deployment**: Docker containerization for easy deployment with minimal dependencies
+
+## Development Roadmap
+
+### Phase 1: MVP Foundation
+**Scope**: Basic property search functionality with core MCP integration and GraphQL API
+- MCP server framework setup with TypeScript
+- GraphQL client implementation with authentication
+- API integration and response parsing for basic property information
+- Basic property search tool (location, price range, property type)
+- Simple response formatting for property listings
+- Core error handling and API rate limiting
+- Basic documentation and setup instructions
+
+### Phase 2: Enhanced Filtering and Analysis
+**Scope**: Comprehensive search capabilities and basic analysis features through advanced GraphQL queries
+- Advanced filtering tools (rooms, size, amenities, year built)
+- Property detail retrieval with full information using detailed GraphQL queries
+- Basic statistical analysis (average prices, count summaries)
+- Improved error messages and user guidance
+- Performance optimization with intelligent caching and request throttling
+- Enhanced data validation and response parsing reliability
+
+### Phase 3: Advanced Intelligence Features
+**Scope**: Natural language processing and sophisticated analysis
+- Intelligent query parsing for conversational searches
+- Comparative analysis tools (neighborhood comparisons)
+- Price trend analysis and market insights
+- Geospatial filtering and distance-based searches
+- Advanced response formatting options
+- Comprehensive test coverage and reliability improvements
+
+### Phase 4: Production Readiness and Optimization
+**Scope**: Enterprise-grade features and deployment preparation
+- Production monitoring and logging
+- Rate limiting and quota management
+- Advanced caching strategies
+- Security hardening and audit compliance
+- Performance benchmarking and optimization
+- Comprehensive documentation and examples
+
+## Logical Dependency Chain
+
+### Foundation Layer (Must Build First)
+1. **MCP Protocol Implementation**: Core server framework and tool registration
+2. **GraphQL Client**: API client and authentication implementation
+3. **Basic Property Search**: Simple search functionality to validate the API integration
+
+### Usable MVP (Quick Value Demonstration)
+4. **Property Listing Tool**: Return formatted property results
+5. **Basic Filtering**: Location and price range filtering
+6. **Error Handling**: User-friendly error messages for invalid requests
+
+### Enhanced Functionality (Build Upon MVP)
+7. **Advanced Filters**: All Booli search parameters supported through GraphQL variables
+8. **Property Details**: Detailed information retrieval for specific properties via detailed GraphQL queries
+9. **Response Formatting**: Multiple output formats for different use cases
+
+### Intelligence Layer (Sophisticated Features)
+10. **Query Parser**: Natural language understanding for conversational queries
+11. **Analysis Tools**: Statistical analysis and market insights
+12. **Comparative Features**: Cross-listing and neighborhood comparisons
+
+### Production Features (Polish and Scale)
+13. **Caching System**: Performance optimization for repeated queries and reduced API calls
+14. **Monitoring**: Logging, metrics, health checks, and API response rate tracking
+15. **Documentation**: Comprehensive guides and API documentation
+
+## Risks and Mitigations
+
+### Technical Challenges
+**Risk**: Booli API changes or deprecation of GraphQL endpoints
+**Mitigation**: Implement robust error handling, API versioning support, and fallback mechanisms
+
+**Risk**: API rate limiting or authentication changes
+**Mitigation**: Intelligent request throttling, credential management, and respectful API usage with caching
+
+**Risk**: Natural language query complexity exceeding parsing capabilities
+**Mitigation**: Start with structured query patterns and gradually expand NLP sophistication
+
+**Risk**: Large result sets causing performance issues with API pagination
+**Mitigation**: Implement pagination limits, parallel requests with rate limiting, and streaming responses
+
+### MVP Scope Management
+**Risk**: Feature creep delaying initial usable version
+**Mitigation**: Strict MVP definition focusing on core search functionality first
+
+**Risk**: Over-engineering the query parsing before validating basic functionality
+**Mitigation**: Begin with simple parameter-based searches before adding NLP
+
+### Resource Constraints
+**Risk**: API changes breaking integration functionality
+**Mitigation**: Automated testing of API endpoints and flexible query building strategies
+
+**Risk**: Development complexity of GraphQL integration exceeding timeline expectations
+**Mitigation**: Iterative development with working prototypes at each phase, starting with simple queries
+
+## Appendix
+
+### Research Findings
+- Booli provides comprehensive Swedish property data accessible through GraphQL API
+- MCP protocol is well-documented with TypeScript support
+- Similar real estate MCP servers exist for other markets (reference architectures available)
+- Natural language processing for property queries has established patterns
+- Modern GraphQL clients provide reliable API integration with caching and error handling
+
+### Technical Specifications
+- **Programming Language**: TypeScript for type safety and developer experience
+- **MCP Version**: Latest stable MCP specification
+- **GraphQL Client**: graphql-request or Apollo Client for API communication
+- **Response Format**: JSON with optional human-readable formatting
+- **Caching**: Redis for production, in-memory for development
+- **Authentication**: API key management and secure credential handling
+
+### Success Metrics
+- **Functionality**: All core property search parameters supported
+- **Performance**: Sub-2 second response times for typical queries
+- **Reliability**: 99%+ uptime with graceful error handling
+- **Usability**: Natural language queries work for common use cases
+- **Coverage**: Access to complete Booli property database
