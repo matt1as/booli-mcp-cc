@@ -4,7 +4,7 @@
  */
 
 import { GraphQLClient } from 'graphql-request';
-import { ApiResponse, SearchCriteria } from '../types';
+import { ApiResponse, SearchCriteria, LocationApiResponse, LocationSearchCriteria } from '../types';
 
 /**
  * GraphQL client for the Booli.se real estate API.
@@ -300,6 +300,49 @@ export class BooliGraphQLClient {
     } catch (error) {
       console.error('Schema introspection failed:', error);
       return null;
+    }
+  }
+
+  /**
+   * Searches for location suggestions using the provided search query.
+   * 
+   * This method constructs a GraphQL query to find area suggestions based on
+   * partial location names. It's useful for location discovery and helping users
+   * find the correct area IDs for property searches.
+   * 
+   * @param criteria - The search criteria containing the query string
+   * @returns Promise resolving to the API response with location suggestions
+   * @throws Error if the GraphQL query fails or the API returns an error
+   */
+  async searchLocations(criteria: LocationSearchCriteria): Promise<LocationApiResponse> {
+    // Construct GraphQL query for area suggestion search
+    const query = `
+      query areaSuggestionSearch {
+        areaSuggestionSearch(search: "${criteria.query}") {
+          suggestions {
+            id
+            displayName
+            parent
+            parentType
+            parentDisplayName
+            parentTypeDisplayName
+            parentId
+          }
+        }
+      }
+    `;
+
+    try {
+      const response = await this.client.request<{ areaSuggestionSearch: any }>(query);
+      
+      return {
+        data: {
+          areaSuggestionSearch: response.areaSuggestionSearch,
+        },
+      };
+    } catch (error) {
+      console.error('Location search query failed:', error);
+      throw new Error(`Failed to search locations: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 

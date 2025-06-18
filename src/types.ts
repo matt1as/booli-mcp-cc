@@ -80,6 +80,78 @@ export type SearchResult = z.infer<typeof SearchResultSchema>;
 export type ApiResponse = z.infer<typeof ResponseSchema>;
 
 /**
+ * Zod schema for validating location suggestion data from the Booli GraphQL API.
+ * Represents a single location suggestion with its attributes.
+ * 
+ * @property id - Unique identifier for the location/area
+ * @property displayName - Human-readable name of the location
+ * @property parent - Parent location name (e.g., municipality)
+ * @property parentType - Type of parent location (e.g., "Kommun")
+ * @property parentDisplayName - Full display name of parent location
+ * @property parentTypeDisplayName - Display name for parent type
+ * @property parentId - Unique identifier for the parent location
+ */
+export const LocationSuggestionSchema = z.object({
+  id: z.string(),
+  displayName: z.string(),
+  parent: z.string(),
+  parentType: z.string(),
+  parentDisplayName: z.string(),
+  parentTypeDisplayName: z.string(),
+  parentId: z.string(),
+});
+
+/**
+ * Zod schema for validating location search results from the Booli GraphQL API.
+ * Contains an array of location suggestions matching the search query.
+ * 
+ * @property suggestions - Array of location suggestion objects
+ */
+export const LocationSearchResultSchema = z.object({
+  suggestions: z.array(LocationSuggestionSchema),
+});
+
+/**
+ * Zod schema for validating the complete location search API response structure.
+ * Represents the top-level response wrapper from the Booli GraphQL API.
+ * 
+ * @property data - Container object for the actual location search results
+ * @property data.areaSuggestionSearch - The location search result data structure
+ */
+export const LocationResponseSchema = z.object({
+  data: z.object({
+    areaSuggestionSearch: LocationSearchResultSchema,
+  }),
+});
+
+/**
+ * TypeScript type derived from LocationSuggestionSchema.
+ * Represents a single location suggestion with all its attributes.
+ */
+export type LocationSuggestion = z.infer<typeof LocationSuggestionSchema>;
+
+/**
+ * TypeScript type derived from LocationSearchResultSchema.
+ * Represents the result set from a location search operation.
+ */
+export type LocationSearchResult = z.infer<typeof LocationSearchResultSchema>;
+
+/**
+ * TypeScript type derived from LocationResponseSchema.
+ * Represents the complete location search API response structure from Booli's GraphQL endpoint.
+ */
+export type LocationApiResponse = z.infer<typeof LocationResponseSchema>;
+
+/**
+ * Interface defining the search criteria for location searches.
+ * 
+ * @property query - Search query string to find location suggestions
+ */
+export interface LocationSearchCriteria {
+  query: string;
+}
+
+/**
  * Interface defining the search criteria for property searches.
  * All properties are optional to allow flexible search combinations.
  * 

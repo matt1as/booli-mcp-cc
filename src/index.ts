@@ -25,6 +25,7 @@ import {
   Tool,
 } from '@modelcontextprotocol/sdk/types.js';
 import { searchProperties } from './tools/searchProperties';
+import { searchLocations } from './tools/searchLocations';
 
 /**
  * Main MCP server instance for handling property search requests.
@@ -45,8 +46,8 @@ const server = new Server(
 /**
  * Available MCP tools exposed by this server.
  * 
- * Currently provides one comprehensive property search tool that supports
- * a wide range of filtering options for Swedish real estate data.
+ * Provides comprehensive property search and location discovery tools
+ * for Swedish real estate data from Booli.se.
  */
 const tools: Tool[] = [
   {
@@ -147,11 +148,30 @@ const tools: Tool[] = [
       required: [], // All parameters are optional for flexible searching
     },
   },
+  {
+    name: 'search_locations',
+    description: 'Search for location suggestions on Booli.se to find area IDs and names',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        query: {
+          type: 'string',
+          description: 'Search query to find location suggestions (e.g., "ektorp", "stockholm", "nacka")',
+        },
+        limit: {
+          type: 'number',
+          description: 'Maximum number of results to return (default: 10)',
+          default: 10,
+        },
+      },
+      required: ['query'], // Query is required for location searches
+    },
+  },
 ];
 
 /**
  * Handles the MCP ListTools request to advertise available tools.
- * Returns the tools array containing the property search tool definition.
+ * Returns the tools array containing both property search and location search tools.
  */
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
@@ -173,6 +193,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   switch (name) {
     case 'search_properties':
       return await searchProperties(args);
+    case 'search_locations':
+      return await searchLocations(args as { query: string; limit?: number });
     default:
       throw new Error(`Unknown tool: ${name}`);
   }
