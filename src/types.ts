@@ -152,6 +152,15 @@ export interface LocationSearchCriteria {
 }
 
 /**
+ * Interface defining the criteria for property detail retrieval.
+ * 
+ * @property propertyId - Unique identifier of the property to retrieve details for
+ */
+export interface PropertyDetailCriteria {
+  propertyId: string;
+}
+
+/**
  * Interface defining the search criteria for property searches.
  * All properties are optional to allow flexible search combinations.
  * 

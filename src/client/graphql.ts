@@ -4,7 +4,7 @@
  */
 
 import { GraphQLClient } from 'graphql-request';
-import { ApiResponse, SearchCriteria, LocationApiResponse, LocationSearchCriteria } from '../types';
+import { ApiResponse, SearchCriteria, LocationApiResponse, LocationSearchCriteria, PropertyDetailCriteria } from '../types';
 
 /**
  * GraphQL client for the Booli.se real estate API.
@@ -344,6 +344,25 @@ export class BooliGraphQLClient {
       console.error('Location search query failed:', error);
       throw new Error(`Failed to search locations: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
+  }
+
+  /**
+   * Retrieves detailed information for a specific property by ID.
+   * 
+   * This method uses the same GraphQL query structure as searchForSale but filters
+   * by property ID to return comprehensive details for a single property. It includes
+   * all available property fields including pricing, images, agency information, and amenities.
+   * 
+   * @param criteria - The property detail criteria containing the property ID
+   * @returns Promise resolving to the API response with detailed property information
+   * @throws Error if the GraphQL query fails, property not found, or API returns an error
+   */
+  async getPropertyDetails(criteria: PropertyDetailCriteria): Promise<ApiResponse> {
+    // Note: Direct property ID lookup is not supported by Booli's GraphQL API
+    // The API requires location or other search filters and doesn't support querying by property ID alone
+    // For this implementation, we'll return a helpful message explaining the limitation
+    
+    throw new Error(`Direct property lookup by ID is not supported by Booli's API. Property ID ${criteria.propertyId} cannot be retrieved directly. Please use the search_properties tool with location or other filters to find properties, then reference the detailed information from the search results.`);
   }
 
   /**

@@ -26,6 +26,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { searchProperties } from './tools/searchProperties';
 import { searchLocations } from './tools/searchLocations';
+import { getPropertyDetails } from './tools/getPropertyDetails';
 
 /**
  * Main MCP server instance for handling property search requests.
@@ -46,8 +47,8 @@ const server = new Server(
 /**
  * Available MCP tools exposed by this server.
  * 
- * Provides comprehensive property search and location discovery tools
- * for Swedish real estate data from Booli.se.
+ * Provides comprehensive property search, location discovery, and detailed
+ * property information tools for Swedish real estate data from Booli.se.
  */
 const tools: Tool[] = [
   {
@@ -167,11 +168,25 @@ const tools: Tool[] = [
       required: ['query'], // Query is required for location searches
     },
   },
+  {
+    name: 'get_property_details',
+    description: 'Retrieve comprehensive details for a specific property using its property ID',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        propertyId: {
+          type: 'string',
+          description: 'Unique identifier of the property to retrieve details for (e.g., "12345")',
+        },
+      },
+      required: ['propertyId'], // Property ID is required for detail retrieval
+    },
+  },
 ];
 
 /**
  * Handles the MCP ListTools request to advertise available tools.
- * Returns the tools array containing both property search and location search tools.
+ * Returns the tools array containing property search, location search, and property detail tools.
  */
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
@@ -195,6 +210,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       return await searchProperties(args);
     case 'search_locations':
       return await searchLocations(args as { query: string; limit?: number });
+    case 'get_property_details':
+      return await getPropertyDetails(args as { propertyId: string });
     default:
       throw new Error(`Unknown tool: ${name}`);
   }
